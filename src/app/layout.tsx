@@ -9,12 +9,17 @@ export const metadata: Metadata = {
   title: 'DokumentAI — Norsk dokumentassistent',
   description:
     'Last opp PDF- og Word-dokumenter og still spørsmål om innholdet med kunstig intelligens.',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nb" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full bg-gray-50 text-gray-900 flex flex-col">
+      <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>
       </body>
     </html>

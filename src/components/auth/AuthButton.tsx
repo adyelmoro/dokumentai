@@ -21,7 +21,7 @@ export default function AuthButton() {
     <button
       onClick={signInWithGoogle}
       disabled={loading}
-      className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 rounded-xl px-6 py-3 font-medium text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-60 shadow-sm"
+      className="w-full flex items-center justify-center gap-3 bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl px-6 py-3 font-medium text-gray-700 hover:bg-white transition-all disabled:opacity-60 shadow-lg shadow-black/15"
     >
       {loading ? (
         <span className="w-5 h-5 border-2 border-gray-300 border-t-gray-700 rounded-full animate-spin" />

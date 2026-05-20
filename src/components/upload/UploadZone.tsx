@@ -52,20 +52,24 @@ export default function UploadZone() {
 
   if (state.status === 'done') {
     return (
-      <div className="border-2 border-green-300 bg-green-50 rounded-2xl p-14 text-center">
-        <div className="text-4xl mb-3">✅</div>
-        <p className="font-semibold text-green-800">{u.doneTitle}</p>
-        <p className="text-sm text-green-600 mt-1">{u.doneDesc(state.chunkCount)}</p>
+      <div className="bg-emerald-500/12 backdrop-blur-xl border border-emerald-400/25 rounded-2xl p-14 text-center shadow-lg">
+        <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-emerald-400/20 border border-emerald-400/30 flex items-center justify-center">
+          <svg className="w-7 h-7 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <p className="font-semibold text-white/90">{u.doneTitle}</p>
+        <p className="text-sm text-emerald-300/80 mt-1">{u.doneDesc(state.chunkCount)}</p>
       </div>
     );
   }
 
   if (state.status === 'processing') {
     return (
-      <div className="border-2 border-blue-200 bg-blue-50 rounded-2xl p-14 text-center">
-        <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4" />
-        <p className="font-medium text-blue-800">{u.processing}</p>
-        <p className="text-sm text-blue-500 mt-1">{u.processingDesc}</p>
+      <div className="bg-indigo-500/10 backdrop-blur-xl border border-indigo-400/20 rounded-2xl p-14 text-center shadow-lg">
+        <div className="w-10 h-10 border-2 border-indigo-400/30 border-t-indigo-400 rounded-full animate-spin mx-auto mb-4" />
+        <p className="font-medium text-white/80">{u.processing}</p>
+        <p className="text-sm text-white/45 mt-1">{u.processingDesc}</p>
       </div>
     );
   }
@@ -81,23 +85,27 @@ export default function UploadZone() {
     <div className="space-y-3">
       <div
         {...getRootProps()}
-        className={`border-2 border-dashed rounded-2xl p-14 text-center cursor-pointer transition-colors ${
+        className={`rounded-2xl p-14 text-center cursor-pointer transition-all backdrop-blur-xl border-2 border-dashed shadow-lg ${
           isDragActive
-            ? 'border-blue-400 bg-blue-50'
-            : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
+            ? 'border-indigo-400/60 bg-indigo-500/18 scale-[1.01]'
+            : 'border-white/15 bg-white/6 hover:border-indigo-400/40 hover:bg-white/10'
         }`}
       >
         <input {...getInputProps()} />
-        <div className="text-5xl mb-4">📄</div>
-        <p className="font-semibold text-gray-900 text-lg">
+        <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/8 border border-white/12 flex items-center justify-center">
+          <svg className="w-7 h-7 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <p className="font-semibold text-white/85 text-lg">
           {isDragActive ? u.dragActive : u.dragIdle}
         </p>
-        <p className="text-sm text-gray-500 mt-2">{u.clickHint}</p>
-        <p className="text-xs text-gray-400 mt-4">{u.typeHint}</p>
+        <p className="text-sm text-white/45 mt-2">{u.clickHint}</p>
+        <p className="text-xs text-white/30 mt-4">{u.typeHint}</p>
       </div>
 
       {(state.status === 'error' || rejectionMessage) && (
-        <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+        <div className="bg-red-500/12 backdrop-blur-sm border border-red-400/25 rounded-xl px-4 py-3 text-sm text-red-300">
           {state.status === 'error' ? state.message : rejectionMessage}
         </div>
       )}

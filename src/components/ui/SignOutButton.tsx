@@ -16,7 +16,7 @@ export default function SignOutButton({ label = 'Logg ut' }: { label?: string })
   return (
     <button
       onClick={signOut}
-      className="text-sm text-gray-400 hover:text-gray-700 transition-colors"
+      className="text-sm text-white/40 hover:text-white/80 transition-colors"
     >
       {label}
     </button>

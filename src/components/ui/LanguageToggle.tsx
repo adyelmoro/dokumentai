@@ -9,11 +9,11 @@ export default function LanguageToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle language"
-      className="flex items-center gap-0.5 text-xs font-semibold rounded-md px-2 py-1 border border-gray-200 hover:border-gray-400 transition-colors select-none"
+      className="flex items-center gap-0.5 text-xs font-semibold rounded-md px-2 py-1 border border-white/20 hover:border-white/40 bg-white/8 hover:bg-white/12 backdrop-blur-sm transition-all select-none"
     >
-      <span className={lang === 'no' ? 'text-gray-900' : 'text-gray-400'}>NO</span>
-      <span className="text-gray-300 mx-0.5">|</span>
-      <span className={lang === 'en' ? 'text-gray-900' : 'text-gray-400'}>EN</span>
+      <span className={lang === 'no' ? 'text-white' : 'text-white/40'}>NO</span>
+      <span className="text-white/20 mx-0.5">|</span>
+      <span className={lang === 'en' ? 'text-white' : 'text-white/40'}>EN</span>
     </button>
   );
 }

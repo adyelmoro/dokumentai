@@ -26,7 +26,7 @@ export default function DeleteDocumentButton({ documentId }: { documentId: strin
       onClick={handleDelete}
       disabled={loading}
       className={`text-xs font-medium transition-colors ${
-        confirming ? 'text-red-500 hover:text-red-700' : 'text-gray-400 hover:text-gray-600'
+        confirming ? 'text-red-400 hover:text-red-300' : 'text-white/30 hover:text-white/60'
       } disabled:opacity-50`}
     >
       {loading ? '...' : confirming ? t.card.confirmDelete : t.card.delete}

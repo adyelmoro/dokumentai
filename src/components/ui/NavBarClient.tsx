@@ -24,13 +24,13 @@ export default function NavBarClient({ email }: { email?: string }) {
           <LanguageToggle />
           <Link
             href="/upload"
-            className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+            className="hidden sm:block text-sm font-medium text-white/70 hover:text-white transition-colors"
           >
             {t.nav.upload}
           </Link>
           {email && (
             <>
-              <span className="text-sm text-white/40 hidden sm:block">{email}</span>
+              <span className="text-sm text-white/40 hidden lg:block">{email}</span>
               <SignOutButton label={t.nav.signOut} />
             </>
           )}

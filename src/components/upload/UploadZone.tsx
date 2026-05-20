@@ -52,7 +52,7 @@ export default function UploadZone() {
 
   if (state.status === 'done') {
     return (
-      <div className="bg-emerald-500/12 backdrop-blur-xl border border-emerald-400/25 rounded-2xl p-14 text-center shadow-lg">
+      <div className="bg-emerald-500/12 backdrop-blur-xl border border-emerald-400/25 rounded-2xl p-8 sm:p-14 text-center shadow-lg">
         <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-emerald-400/20 border border-emerald-400/30 flex items-center justify-center">
           <svg className="w-7 h-7 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -66,7 +66,7 @@ export default function UploadZone() {
 
   if (state.status === 'processing') {
     return (
-      <div className="bg-indigo-500/10 backdrop-blur-xl border border-indigo-400/20 rounded-2xl p-14 text-center shadow-lg">
+      <div className="bg-indigo-500/10 backdrop-blur-xl border border-indigo-400/20 rounded-2xl p-8 sm:p-14 text-center shadow-lg">
         <div className="w-10 h-10 border-2 border-indigo-400/30 border-t-indigo-400 rounded-full animate-spin mx-auto mb-4" />
         <p className="font-medium text-white/80">{u.processing}</p>
         <p className="text-sm text-white/45 mt-1">{u.processingDesc}</p>
@@ -85,7 +85,7 @@ export default function UploadZone() {
     <div className="space-y-3">
       <div
         {...getRootProps()}
-        className={`rounded-2xl p-14 text-center cursor-pointer transition-all backdrop-blur-xl border-2 border-dashed shadow-lg ${
+        className={`rounded-2xl p-8 sm:p-14 text-center cursor-pointer transition-all backdrop-blur-xl border-2 border-dashed shadow-lg ${
           isDragActive
             ? 'border-indigo-400/60 bg-indigo-500/18 scale-[1.01]'
             : 'border-white/15 bg-white/6 hover:border-indigo-400/40 hover:bg-white/10'

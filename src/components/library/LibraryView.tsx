@@ -11,11 +11,11 @@ export default function LibraryView({ documents }: { documents: Document[] }) {
 
   return (
     <main className="max-w-5xl mx-auto px-4 py-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-white">{l.title}</h1>
+      <div className="flex items-center justify-between mb-6 gap-4">
+        <h1 className="text-xl sm:text-2xl font-bold text-white truncate">{l.title}</h1>
         <Link
           href="/upload"
-          className="bg-indigo-500/70 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-indigo-400/80 border border-indigo-400/30 transition-all"
+          className="flex-shrink-0 bg-indigo-500/70 backdrop-blur-sm text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-indigo-400/80 border border-indigo-400/30 transition-all"
         >
           {l.uploadBtn}
         </Link>

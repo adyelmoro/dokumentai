@@ -33,7 +33,7 @@ Target users: Norwegian SMEs, accountants, lawyers, consultants.
 
 ---
 
-## Current Phase: 6 — Polish
+## Current Phase: 7 — Vercel Deploy
 
 See PLAN.md for full phase breakdown. See PROJECT-TRACKER.md for task status.
 
@@ -50,8 +50,8 @@ See PLAN.md for full phase breakdown. See PROJECT-TRACKER.md for task status.
 | 3 | Chat & Library | ✅ Done |
 | 4 | Integration Test | ✅ Done |
 | 5 | Language Toggle + Design | ✅ Done |
-| 6 | Polish | 🔄 Active |
-| 7 | Vercel Deploy | ⏳ |
+| 6 | Polish | ✅ Done |
+| 7 | Vercel Deploy | 🔄 Active |
 | 8 | Docs & CV | ⏳ |
 
 ---

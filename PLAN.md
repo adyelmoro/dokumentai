@@ -42,8 +42,8 @@
 | 3 | Chat & Library | ✅ Done | RAG Q&A, source citations, document library, delete |
 | 4 | Integration Test | ✅ Done | First end-to-end test — 2 bugs found and fixed |
 | 5 | Language Toggle + Design | ✅ Done | NO/EN toggle, all UI strings, liquid glass theme, logo, favicon |
-| 6 | Polish | 🔄 Next | Error boundaries, loading skeletons, mobile check, 404 |
-| 7 | Deploy | ⏳ | Vercel deploy, env vars, smoke test in production |
+| 6 | Polish | ✅ Done | Error boundaries, 404 page, mobile responsive fixes |
+| 7 | Deploy | 🔄 Next | Vercel deploy, env vars, smoke test in production |
 | 8 | Documentation | ⏳ | README with screenshots, CV update |
 
 ---

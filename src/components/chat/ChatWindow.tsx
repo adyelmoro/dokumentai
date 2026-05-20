@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import type { ChatMessage as ChatMessageType } from '@/lib/types';
@@ -9,6 +10,8 @@ export default function ChatWindow({ documentId }: { documentId: string }) {
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
+  const c = t.chat;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -24,21 +27,20 @@ export default function ChatWindow({ documentId }: { documentId: string }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ documentId, question, history: messages.slice(-6) }),
       });
-
       const data = await res.json();
 
       setMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
-          content: res.ok ? data.answer : 'Beklager, noe gikk galt. Prøv igjen.',
+          content: res.ok ? data.answer : c.errorGeneric,
           sources: res.ok ? data.sources : undefined,
         },
       ]);
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Nettverksfeil – prøv igjen.' },
+        { role: 'assistant', content: c.errorNetwork },
       ]);
     } finally {
       setLoading(false);
@@ -51,10 +53,8 @@ export default function ChatWindow({ documentId }: { documentId: string }) {
         {messages.length === 0 ? (
           <div className="text-center py-20 text-gray-400 select-none">
             <p className="text-3xl mb-3">💬</p>
-            <p className="font-medium text-gray-500">Still et spørsmål om dokumentet</p>
-            <p className="text-sm mt-1 text-gray-400">
-              F.eks. «Hva er hovedpunktene?» eller «Hvem er partene i kontrakten?»
-            </p>
+            <p className="font-medium text-gray-500">{c.emptyTitle}</p>
+            <p className="text-sm mt-1 text-gray-400">{c.emptyHint}</p>
           </div>
         ) : (
           messages.map((msg, i) => <ChatMessage key={i} message={msg} />)
@@ -70,7 +70,7 @@ export default function ChatWindow({ documentId }: { documentId: string }) {
                 />
               ))}
             </div>
-            <span>Analyserer...</span>
+            <span>{c.thinking}</span>
           </div>
         )}
         <div ref={bottomRef} />

@@ -1,6 +1,7 @@
 'use client';
 
 import { KeyboardEvent, useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ChatInput({
   onSend,
@@ -10,6 +11,7 @@ export default function ChatInput({
   disabled: boolean;
 }) {
   const [value, setValue] = useState('');
+  const { t } = useLanguage();
 
   function handleSend() {
     const trimmed = value.trim();
@@ -32,7 +34,7 @@ export default function ChatInput({
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
         disabled={disabled}
-        placeholder="Still et spørsmål om dokumentet... (Enter for å sende)"
+        placeholder={t.chat.placeholder}
         rows={2}
         className="flex-1 resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:bg-gray-50"
       />
@@ -41,7 +43,7 @@ export default function ChatInput({
         disabled={disabled || !value.trim()}
         className="bg-blue-600 text-white rounded-xl px-5 py-3 font-medium text-sm hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
       >
-        Send
+        {t.chat.send}
       </button>
     </div>
   );

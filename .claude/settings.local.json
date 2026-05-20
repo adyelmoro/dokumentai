@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --force)",
+      "Read(//a/ClaudeAI/MyAI-Projects/**)",
+      "Bash(npx create-next-app@latest dokumentai-tmp --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack)",
+      "Bash(Copy-Item -Path \"dokumentai-tmp\\\\*\" -Destination \"dokumentai\\\\\" -Recurse -Force 2>&1; Copy-Item -Path \"dokumentai-tmp\\\\.*\" -Destination \"dokumentai\\\\\" -Recurse -Force)",
+      "Bash(Remove-Item -Recurse -Force \"dokumentai-tmp\")",
+      "Bash(Write-Host \"Done\")",
+      "Bash(npm install *)",
+      "Bash(Write-Host \"Dirs created\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"A:\\\\ClaudeAI\\\\MyAI-Projects\\\\dokumentai\\\\src\\\\app\\\\auth\\\\callback\")",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const p = require\\('./package.json'\\); console.log\\('next:', p.dependencies.next\\)\")",
+      "Bash(node -e \"const p = require\\('pdf-parse'\\); console.log\\(typeof p, typeof p.default\\)\")",
+      "Bash(node -e \"const p = require\\('pdf-parse'\\); console.log\\(Object.keys\\(p\\).slice\\(0,5\\)\\); console.log\\(typeof p === 'function'\\)\")",
+      "Bash(node -e \"console.log\\(require\\('./node_modules/pdf-parse/package.json'\\).version, require\\('./node_modules/pdf-parse/package.json'\\).main\\)\")",
+      "Bash(node -e \"const p = require\\('./node_modules/pdf-parse/dist/pdf-parse/cjs/index.cjs'\\); console.log\\('type:', typeof p\\); console.log\\('keys:', Object.keys\\(p\\).slice\\(0,8\\)\\)\")",
+      "Bash(node -e \"const { PDFParse } = require\\('./node_modules/pdf-parse/dist/pdf-parse/cjs/index.cjs'\\); const p = new PDFParse\\(\\); console.log\\(typeof p.parse\\)\")",
+      "Bash(npm run *)",
+      "Bash(node -e \"const p=require\\('./package.json'\\);console.log\\(p.name\\)\")",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(Start-Process npm *)",
+      "Bash(Write-Host \"Started\")",
+      "Bash(git commit -m 'docs: add complete project plan, phase tracker, and session context *)",
+      "Bash(node -e ' *)",
+      "Bash(git commit -m 'fix: correct Gemini model names for v1beta API *)",
+      "Bash(git commit -m 'docs: mark Phase 4 complete, set Phase 5 as next *)",
+      "Bash(git commit -m 'feat\\(i18n\\): add Norwegian/English language toggle *)"
+    ]
+  }
+}

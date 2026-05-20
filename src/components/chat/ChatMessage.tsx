@@ -1,7 +1,11 @@
+'use client';
+
+import { useLanguage } from '@/contexts/LanguageContext';
 import type { ChatMessage } from '@/lib/types';
 
 export default function ChatMessageComponent({ message }: { message: ChatMessage }) {
   const isUser = message.role === 'user';
+  const { t } = useLanguage();
 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
@@ -22,7 +26,7 @@ export default function ChatMessageComponent({ message }: { message: ChatMessage
               <details key={i} className="text-xs group">
                 <summary className="cursor-pointer text-gray-400 hover:text-gray-600 transition-colors select-none list-none flex items-center gap-1">
                   <span className="group-open:rotate-90 transition-transform inline-block">▶</span>
-                  Kilde {i + 1} · avsnitt {source.chunk_index + 1}
+                  {t.chat.source(i + 1, source.chunk_index + 1)}
                 </summary>
                 <div className="mt-1.5 pl-3 border-l-2 border-gray-200 text-gray-500 leading-relaxed">
                   {source.content.slice(0, 300)}

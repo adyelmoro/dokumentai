@@ -3,11 +3,14 @@
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useRouter } from 'next/navigation';
+import { useLanguage } from '@/contexts/LanguageContext';
 import type { UploadState } from '@/lib/types';
 
 export default function UploadZone() {
   const [state, setState] = useState<UploadState>({ status: 'idle' });
   const router = useRouter();
+  const { t } = useLanguage();
+  const u = t.upload;
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
@@ -15,7 +18,6 @@ export default function UploadZone() {
       if (!file) return;
 
       setState({ status: 'processing' });
-
       const formData = new FormData();
       formData.append('file', file);
 
@@ -24,17 +26,17 @@ export default function UploadZone() {
         const data = await res.json();
 
         if (!res.ok) {
-          setState({ status: 'error', message: data.error || 'Opplasting mislyktes' });
+          setState({ status: 'error', message: data.error || u.errNetwork });
           return;
         }
 
         setState({ status: 'done', documentId: data.documentId, chunkCount: data.chunkCount });
         setTimeout(() => router.push(`/library/${data.documentId}`), 1500);
       } catch {
-        setState({ status: 'error', message: 'Nettverksfeil – prøv igjen' });
+        setState({ status: 'error', message: u.errNetwork });
       }
     },
-    [router]
+    [router, u]
   );
 
   const { getRootProps, getInputProps, isDragActive, fileRejections } = useDropzone({
@@ -52,10 +54,8 @@ export default function UploadZone() {
     return (
       <div className="border-2 border-green-300 bg-green-50 rounded-2xl p-14 text-center">
         <div className="text-4xl mb-3">✅</div>
-        <p className="font-semibold text-green-800">Dokumentet er klart!</p>
-        <p className="text-sm text-green-600 mt-1">
-          {state.chunkCount} avsnitt indeksert — sender deg til chat...
-        </p>
+        <p className="font-semibold text-green-800">{u.doneTitle}</p>
+        <p className="text-sm text-green-600 mt-1">{u.doneDesc(state.chunkCount)}</p>
       </div>
     );
   }
@@ -64,17 +64,18 @@ export default function UploadZone() {
     return (
       <div className="border-2 border-blue-200 bg-blue-50 rounded-2xl p-14 text-center">
         <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4" />
-        <p className="font-medium text-blue-800">Analyserer dokumentet...</p>
-        <p className="text-sm text-blue-500 mt-1">Deler opp og indekserer innholdet</p>
+        <p className="font-medium text-blue-800">{u.processing}</p>
+        <p className="text-sm text-blue-500 mt-1">{u.processingDesc}</p>
       </div>
     );
   }
 
-  const rejectionMessage = fileRejections[0]?.errors[0]?.code === 'file-too-large'
-    ? 'Filen er for stor (maks 10 MB)'
-    : fileRejections.length > 0
-    ? 'Kun PDF og DOCX støttes'
-    : null;
+  const rejectionMessage =
+    fileRejections[0]?.errors[0]?.code === 'file-too-large'
+      ? u.errTooLarge
+      : fileRejections.length > 0
+      ? u.errType
+      : null;
 
   return (
     <div className="space-y-3">
@@ -89,10 +90,10 @@ export default function UploadZone() {
         <input {...getInputProps()} />
         <div className="text-5xl mb-4">📄</div>
         <p className="font-semibold text-gray-900 text-lg">
-          {isDragActive ? 'Slipp filen her' : 'Dra og slipp filen din her'}
+          {isDragActive ? u.dragActive : u.dragIdle}
         </p>
-        <p className="text-sm text-gray-500 mt-2">eller klikk for å velge fil</p>
-        <p className="text-xs text-gray-400 mt-4">PDF eller DOCX · Maks 10 MB</p>
+        <p className="text-sm text-gray-500 mt-2">{u.clickHint}</p>
+        <p className="text-xs text-gray-400 mt-4">{u.typeHint}</p>
       </div>
 
       {(state.status === 'error' || rejectionMessage) && (

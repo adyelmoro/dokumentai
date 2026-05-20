@@ -23,8 +23,8 @@ Target users: Norwegian SMEs, accountants, lawyers, consultants.
 | Framework | Next.js 16.2.6 (App Router) |
 | Language | TypeScript strict |
 | Styling | Tailwind CSS v4 |
-| AI Chat | Gemini 2.0 Flash (gemini-2.0-flash) |
-| Embeddings | Gemini text-embedding-004 (768 dims) |
+| AI Chat | Gemini 2.5 Flash (gemini-2.5-flash) |
+| Embeddings | gemini-embedding-001 (768 dims via outputDimensionality) |
 | Vector DB | Supabase pgvector |
 | File storage | Supabase Storage (bucket: dokumentai-uploads) |
 | Document parsing | pdf-parse v1.1.1 (PDF) + mammoth (docx) |

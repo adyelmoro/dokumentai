@@ -53,7 +53,7 @@ See PLAN.md for full phase breakdown. See PROJECT-TRACKER.md for task status.
 | 5 | Language Toggle + Design | ✅ Done |
 | 6 | Polish | ✅ Done |
 | 7 | Vercel Deploy | ✅ Done |
-| 8 | Docs & CV | 🔄 Active |
+| 8 | Docs & CV | ✅ Done |
 
 ---
 

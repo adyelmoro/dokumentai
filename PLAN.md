@@ -44,7 +44,7 @@
 | 5 | Language Toggle + Design | ✅ Done | NO/EN toggle, all UI strings, liquid glass theme, logo, favicon |
 | 6 | Polish | ✅ Done | Error boundaries, 404 page, mobile responsive fixes |
 | 7 | Deploy | ✅ Done | https://dokumentai-seven.vercel.app — live on Vercel |
-| 8 | Documentation | 🔄 Next | README with screenshots, CV update |
+| 8 | Documentation | ✅ Done | README live on GitHub, CV updated (both projects + cover letter) |
 
 ---
 

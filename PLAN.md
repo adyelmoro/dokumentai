@@ -43,8 +43,8 @@
 | 4 | Integration Test | ✅ Done | First end-to-end test — 2 bugs found and fixed |
 | 5 | Language Toggle + Design | ✅ Done | NO/EN toggle, all UI strings, liquid glass theme, logo, favicon |
 | 6 | Polish | ✅ Done | Error boundaries, 404 page, mobile responsive fixes |
-| 7 | Deploy | 🔄 Next | Vercel deploy, env vars, smoke test in production |
-| 8 | Documentation | ⏳ | README with screenshots, CV update |
+| 7 | Deploy | ✅ Done | https://dokumentai-seven.vercel.app — live on Vercel |
+| 8 | Documentation | 🔄 Next | README with screenshots, CV update |
 
 ---
 

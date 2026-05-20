@@ -33,7 +33,8 @@ Target users: Norwegian SMEs, accountants, lawyers, consultants.
 
 ---
 
-## Current Phase: 7 — Vercel Deploy
+## Current Phase: 8 — Documentation & CV
+**Live URL:** https://dokumentai-seven.vercel.app
 
 See PLAN.md for full phase breakdown. See PROJECT-TRACKER.md for task status.
 
@@ -51,8 +52,8 @@ See PLAN.md for full phase breakdown. See PROJECT-TRACKER.md for task status.
 | 4 | Integration Test | ✅ Done |
 | 5 | Language Toggle + Design | ✅ Done |
 | 6 | Polish | ✅ Done |
-| 7 | Vercel Deploy | 🔄 Active |
-| 8 | Docs & CV | ⏳ |
+| 7 | Vercel Deploy | ✅ Done |
+| 8 | Docs & CV | 🔄 Active |
 
 ---
 

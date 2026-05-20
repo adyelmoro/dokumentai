@@ -1,7 +1,7 @@
 # DokumentAI — Project Tracker
 
 **Last updated:** 2026-05-20
-**Current phase:** Phase 4 — Integration Testing
+**Current phase:** Phase 5 — Language Toggle (next session)
 
 ---
 
@@ -32,13 +32,13 @@
 ## Phase 2 — Upload Pipeline ✅ COMPLETE
 
 - [x] `POST /api/upload` route
-- [x] PDF parsing with pdf-parse v1
+- [x] PDF parsing with pdf-parse v1.1.1
 - [x] DOCX parsing with mammoth
 - [x] Text chunker (500 tokens, 50 overlap, paragraph-aware)
-- [x] Gemini text-embedding-004 — embed each chunk with rate-limit delay
+- [x] Gemini gemini-embedding-001 — embed each chunk with 50ms rate-limit delay
 - [x] Supabase Storage upload
 - [x] `documents` table insert
-- [x] `document_chunks` table insert with embeddings
+- [x] `document_chunks` table insert with embeddings (768 dims)
 - [x] Error rollback (storage + DB cleanup on failure)
 - [x] `UploadZone` component (react-dropzone, drag & drop)
 - [x] Upload page
@@ -49,9 +49,9 @@
 ## Phase 3 — Chat & Library ✅ COMPLETE
 
 - [x] `POST /api/chat` route
-- [x] Question embedding with text-embedding-004
+- [x] Question embedding with gemini-embedding-001
 - [x] pgvector `match_chunks` RPC call
-- [x] Gemini 2.0 Flash answer generation with source grounding
+- [x] Gemini 2.5 Flash answer generation with source grounding
 - [x] `ChatWindow` client component (message thread, auto-scroll)
 - [x] `ChatMessage` component (user/assistant bubbles, expandable sources)
 - [x] `ChatInput` component (Enter to send, Shift+Enter for newline)
@@ -65,42 +65,43 @@
 
 ---
 
-## Phase 4 — Integration Testing 🔄 ACTIVE
-
-### Prerequisites (Ayyad does these)
-- [ ] Run `supabase-storage-policies.sql` in Supabase SQL Editor
-- [ ] Set up Google OAuth (Google Cloud Console → Supabase Providers → Google)
-
-### Test the full flow
-- [ ] Landing page loads at localhost:3000
-- [ ] Google Sign-In works → redirected to /library
-- [ ] Upload a PDF → processing shown → redirected to /library/[id]
-- [ ] Ask a question → answer with citations returned
-- [ ] Document visible in library
-- [ ] Delete document works
-- [ ] Sign out works → back to landing
+## Phase 4 — Integration Testing ✅ COMPLETE (2026-05-20)
 
 ### Bugs found & fixed
-_None yet — in progress_
+| Bug | Root cause | Fix |
+|-----|-----------|-----|
+| "Embedding process failed" on upload | `text-embedding-004` renamed to `gemini-embedding-001` in v1beta API | Updated model name + outputDimensionality: 768 |
+| `gemini-2.0-flash` quota = 0 | Free tier quota unavailable for 2.0-flash in this region | Switched to `gemini-2.5-flash` (better model, works on free tier) |
+
+### Confirmed working
+- [x] Landing page loads at localhost:3000
+- [x] Google Sign-In works → redirected to /library
+- [x] Upload a PDF → processing shown → redirected to /library/[id]
+- [x] Ask a question → answer with citations returned
+- [x] Document visible in library
+- [x] Delete document works (two-click confirm)
+- [x] Sign out works → back to landing page
 
 ---
 
-## Phase 5 — Language Toggle ⏳ NOT STARTED
+## Phase 5 — Language Toggle ⏳ NEXT SESSION
 
 - [ ] `src/lib/i18n.ts` — translation strings object (no/en)
-- [ ] `src/contexts/LanguageContext.tsx` — React context + localStorage
-- [ ] `LanguageToggle` component in NavBar
+- [ ] `src/contexts/LanguageContext.tsx` — React context + localStorage persistence
+- [ ] `src/components/ui/LanguageToggle.tsx` — NO/EN button in NavBar
 - [ ] Translate: landing page
-- [ ] Translate: library page
-- [ ] Translate: upload page + UploadZone states
-- [ ] Translate: chat page placeholder + hint
-- [ ] Translate: DocumentCard (dates, labels)
-- [ ] Translate: error messages
+- [ ] Translate: NavBar links
+- [ ] Translate: library page (headers, empty state)
+- [ ] Translate: upload page + UploadZone (all states)
+- [ ] Translate: chat page (placeholder, hint text)
+- [ ] Translate: DocumentCard (labels, dates)
+- [ ] Translate: error messages in UploadZone
 
 **Testing checklist:**
 - [ ] Default language is Norwegian
-- [ ] Toggle works, persists after reload
-- [ ] All UI text translated in English mode
+- [ ] Toggle switches to English and back
+- [ ] Language persists after page reload
+- [ ] All UI text translated — no Norwegian leaking in English mode
 
 ---
 
@@ -151,7 +152,7 @@ _None yet — in progress_
 **Testing checklist:**
 - [ ] README renders on GitHub — no broken images
 - [ ] Live URL in README works
-- [ ] Local `npm install && npm run dev` works from clean clone
+- [ ] Local setup instructions work on clean clone
 - [ ] CV exported correctly
 
 ---
@@ -160,4 +161,5 @@ _None yet — in progress_
 
 | Date | Bug | Status | Fix |
 |------|-----|--------|-----|
-| — | — | — | — |
+| 2026-05-20 | Embedding failed — wrong model name `text-embedding-004` | ✅ Fixed | Renamed to `gemini-embedding-001` + `outputDimensionality: 768` |
+| 2026-05-20 | `gemini-2.0-flash` free tier quota = 0 | ✅ Fixed | Switched to `gemini-2.5-flash` |

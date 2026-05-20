@@ -40,8 +40,8 @@
 | 1 | Foundation | ✅ Done | Scaffold, Supabase/Gemini clients, auth, landing page |
 | 2 | Upload Pipeline | ✅ Done | PDF/DOCX parse, chunk, embed, store |
 | 3 | Chat & Library | ✅ Done | RAG Q&A, source citations, document library, delete |
-| 4 | Integration Test | 🔄 Active | First end-to-end test — find and fix real bugs |
-| 5 | Language Toggle | ⏳ Next | Norwegian/English switch, all UI strings both languages |
+| 4 | Integration Test | ✅ Done | First end-to-end test — 2 bugs found and fixed |
+| 5 | Language Toggle | 🔄 Next | Norwegian/English switch, all UI strings both languages |
 | 6 | Polish | ⏳ | Error boundaries, loading skeletons, mobile check, 404 |
 | 7 | Deploy | ⏳ | Vercel deploy, env vars, smoke test in production |
 | 8 | Documentation | ⏳ | README with screenshots, CV update |

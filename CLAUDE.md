@@ -33,7 +33,7 @@ Target users: Norwegian SMEs, accountants, lawyers, consultants.
 
 ---
 
-## Current Phase: 4 — Integration Testing
+## Current Phase: 5 — Language Toggle (next session)
 
 See PLAN.md for full phase breakdown. See PROJECT-TRACKER.md for task status.
 

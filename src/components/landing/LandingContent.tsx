@@ -4,13 +4,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import AuthButton from '@/components/auth/AuthButton';
 import LanguageToggle from '@/components/ui/LanguageToggle';
 import DokumentAILogo from '@/components/ui/DokumentAILogo';
-import { useSearchParams } from 'next/navigation';
 
 export default function LandingContent() {
   const { t } = useLanguage();
   const l = t.landing;
-  const searchParams = useSearchParams();
-  const authError = searchParams.get('auth_error');
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen px-4 py-12">
@@ -45,13 +42,6 @@ export default function LandingContent() {
             desc={l.feature3Desc}
           />
         </div>
-
-        {/* Diagnostic: show auth error if present — remove before final release */}
-        {authError && (
-          <div className="bg-red-500/20 border border-red-400/30 rounded-xl px-4 py-3 text-sm text-red-200 text-left break-all">
-            <span className="font-semibold">Auth error: </span>{authError}
-          </div>
-        )}
 
         <AuthButton />
 

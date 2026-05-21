@@ -5,9 +5,10 @@ export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
 
-  // Build the redirect response first so we can attach cookies directly to it.
-  // If we set cookies via cookies() from next/headers and then return a separate
-  // NextResponse.redirect(), the session cookies never reach the browser.
+  // Build the redirect response first so cookies can be attached directly to it.
+  // Writing via cookies() from next/headers and returning a separate
+  // NextResponse.redirect() loses the Set-Cookie headers — the browser never
+  // receives the session. Attaching to the response object fixes this.
   const response = NextResponse.redirect(`${origin}/library`);
 
   if (code) {
@@ -28,18 +29,7 @@ export async function GET(request: NextRequest) {
       }
     );
 
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-
-    if (error) {
-      console.error('[auth/callback] exchangeCodeForSession failed:', error.message);
-      return NextResponse.redirect(
-        `${origin}/?auth_error=${encodeURIComponent(error.message)}`
-      );
-    }
-  } else {
-    // No code in URL — Supabase never sent us to /auth/callback
-    console.error('[auth/callback] No code param — Supabase redirect URL may not be configured');
-    return NextResponse.redirect(`${origin}/?auth_error=no_code`);
+    await supabase.auth.exchangeCodeForSession(code);
   }
 
   return response;

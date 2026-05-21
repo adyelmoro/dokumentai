@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import LandingContent from '@/components/landing/LandingContent';
+import { Suspense } from 'react';
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -10,5 +11,9 @@ export default async function HomePage() {
 
   if (user) redirect('/library');
 
-  return <LandingContent />;
+  return (
+    <Suspense>
+      <LandingContent />
+    </Suspense>
+  );
 }

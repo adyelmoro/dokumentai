@@ -32,8 +32,14 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       console.error('[auth/callback] exchangeCodeForSession failed:', error.message);
-      return NextResponse.redirect(`${origin}/`);
+      return NextResponse.redirect(
+        `${origin}/?auth_error=${encodeURIComponent(error.message)}`
+      );
     }
+  } else {
+    // No code in URL — Supabase never sent us to /auth/callback
+    console.error('[auth/callback] No code param — Supabase redirect URL may not be configured');
+    return NextResponse.redirect(`${origin}/?auth_error=no_code`);
   }
 
   return response;

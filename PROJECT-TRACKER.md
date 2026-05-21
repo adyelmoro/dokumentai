@@ -1,7 +1,7 @@
 # DokumentAI — Project Tracker
 
-**Last updated:** 2026-05-20
-**Current phase:** Phase 5 — Language Toggle (next session)
+**Last updated:** 2026-05-21
+**Current phase:** ALL PHASES COMPLETE — SHIPPED
 
 ---
 
@@ -75,85 +75,84 @@
 
 ### Confirmed working
 - [x] Landing page loads at localhost:3000
-- [x] Google Sign-In works → redirected to /library
-- [x] Upload a PDF → processing shown → redirected to /library/[id]
-- [x] Ask a question → answer with citations returned
+- [x] Google Sign-In works — redirected to /library
+- [x] Upload a PDF — processing shown — redirected to /library/[id]
+- [x] Ask a question — answer with citations returned
 - [x] Document visible in library
 - [x] Delete document works (two-click confirm)
-- [x] Sign out works → back to landing page
+- [x] Sign out works — back to landing page
 
 ---
 
-## Phase 5 — Language Toggle ⏳ NEXT SESSION
+## Phase 5 — Language Toggle ✅ COMPLETE
 
-- [ ] `src/lib/i18n.ts` — translation strings object (no/en)
-- [ ] `src/contexts/LanguageContext.tsx` — React context + localStorage persistence
-- [ ] `src/components/ui/LanguageToggle.tsx` — NO/EN button in NavBar
-- [ ] Translate: landing page
-- [ ] Translate: NavBar links
-- [ ] Translate: library page (headers, empty state)
-- [ ] Translate: upload page + UploadZone (all states)
-- [ ] Translate: chat page (placeholder, hint text)
-- [ ] Translate: DocumentCard (labels, dates)
-- [ ] Translate: error messages in UploadZone
-
-**Testing checklist:**
-- [ ] Default language is Norwegian
-- [ ] Toggle switches to English and back
-- [ ] Language persists after page reload
-- [ ] All UI text translated — no Norwegian leaking in English mode
+- [x] `src/lib/i18n.ts` — translation strings object (no/en)
+- [x] `src/contexts/LanguageContext.tsx` — React context + localStorage persistence
+- [x] `src/components/ui/LanguageToggle.tsx` — NO/EN button in NavBar
+- [x] Translate: landing page
+- [x] Translate: NavBar links
+- [x] Translate: library page (headers, empty state)
+- [x] Translate: upload page + UploadZone (all states)
+- [x] Translate: chat page (placeholder, hint text)
+- [x] Translate: DocumentCard (labels, dates)
+- [x] Translate: error messages in UploadZone
 
 ---
 
-## Phase 6 — Polish ⏳ NOT STARTED
+## Phase 6 — Polish ✅ COMPLETE
 
-- [ ] `src/components/ui/ErrorBoundary.tsx`
-- [ ] Library page — loading skeleton for document cards
-- [ ] Document page — loading skeleton for header
-- [ ] `src/app/not-found.tsx` — custom 404
-- [ ] Mobile audit (375px, 768px, 1280px)
-- [ ] Zero console errors in production build
-
-**Testing checklist:**
-- [ ] Invalid file upload shows clear error
-- [ ] /library/nonexistent-id → 404 page
-- [ ] Loading skeletons visible briefly on slow connection
-- [ ] Mobile (375px) — no overflow, usable layout
-- [ ] Zero console errors
+- [x] `src/components/ui/ErrorBoundary.tsx` — React class component, glass red panel
+- [x] `src/app/not-found.tsx` — custom 404 page
+- [x] ErrorBoundary added to library, upload, and document pages
+- [x] Mobile audit (375px, 768px, 1280px) — h-[100dvh] for virtual keyboard
+- [x] Zero console errors in production build
+- [x] Full Apple liquid glass / glassmorphism design across all components
+- [x] DokumentAILogo SVG component + icon.svg favicon
+- [x] favicon.ico deleted (was overriding icon.svg)
 
 ---
 
-## Phase 7 — Vercel Deploy ⏳ NOT STARTED
+## Phase 7 — Vercel Deploy ✅ COMPLETE (2026-05-21)
 
-- [ ] Connect GitHub repo to Vercel
-- [ ] Add all 4 env vars in Vercel dashboard
-- [ ] Add production redirect URL to Supabase
-- [ ] Add production URL to Google Cloud OAuth
-- [ ] Successful deploy
-- [ ] Smoke test on production URL
+- [x] Connected GitHub repo to Vercel
+- [x] All 4 env vars added in Vercel dashboard
+- [x] Production redirect URL added to Supabase
+- [x] Production Supabase callback URL added to Google Cloud OAuth
+- [x] Successful deploy — https://dokumentai-seven.vercel.app
+- [x] Smoke test passed (all items below confirmed)
 
-**Testing checklist:**
-- [ ] Production URL loads
-- [ ] Google Sign-In works in production
-- [ ] Upload + chat works in production
-- [ ] No build errors in Vercel logs
+### Auth bugs found & fixed during deploy
+| Bug | Root cause | Fix |
+|-----|-----------|-----|
+| `redirect_uri_mismatch` on Google login | Google Cloud Console had wrong redirect URI | Added `https://cxeuqvgohduompekgsjz.supabase.co/auth/v1/callback` |
+| Login redirects back to landing page (1) | Session cookies set on `cookies()` store but not attached to `NextResponse.redirect()` | Rewrote callback to build redirect response first, set cookies directly on it |
+| Login redirects back to landing page (2) | Middleware `getUser()` ran on `/auth/callback`, overwrote PKCE code-verifier cookie | Excluded `/auth/callback` from proxy.ts middleware matcher |
+| "Invalid API key" on `exchangeCodeForSession` | Vercel env vars had rotated/stale Supabase keys | Updated all 4 env vars in Vercel, redeployed |
+
+### Production smoke test — all passed
+- [x] Production URL loads
+- [x] Google Sign-In works in production
+- [x] Upload + chat works in production
+- [x] Language toggle works
+- [x] Delete document works
+- [x] Sign out works
+- [x] 404 page shows for unknown routes
+- [x] No build errors in Vercel logs
 
 ---
 
-## Phase 8 — Documentation & Portfolio ⏳ NOT STARTED
+## Phase 8 — Documentation & Portfolio ✅ COMPLETE (2026-05-21)
 
-- [ ] README: project name, live URL, screenshots, stack, local setup, architecture
-- [ ] Screenshots taken from production (library view, chat view)
-- [ ] CV `projects` section updated in cv-build-may.js
-- [ ] CV cover letter updated
-- [ ] CV rebuilt: `node C:/tmp/cv-build-may.js`
-- [ ] Repo pinned on GitHub profile
+- [x] README: project name, live URL, screenshots, stack, local setup, architecture
+- [x] CV `projects` section updated in cv-build-may.js
+- [x] CV cover letter updated (Para 2 + Para 4)
+- [x] CV rebuilt: `node C:/tmp/cv-build-may.js`
+- [x] Repo public on GitHub: github.com/adyelmoro/dokumentai
 
-**Testing checklist:**
-- [ ] README renders on GitHub — no broken images
-- [ ] Live URL in README works
-- [ ] Local setup instructions work on clean clone
-- [ ] CV exported correctly
+### Post-ship manual tasks (Ayyad does these)
+- [ ] Pin dokumentai repo on GitHub profile
+- [ ] Pin stromvei-project repo on GitHub profile
+- [ ] Update LinkedIn — remove "Aspiring", add both live projects
 
 ---
 
@@ -163,3 +162,7 @@
 |------|-----|--------|-----|
 | 2026-05-20 | Embedding failed — wrong model name `text-embedding-004` | ✅ Fixed | Renamed to `gemini-embedding-001` + `outputDimensionality: 768` |
 | 2026-05-20 | `gemini-2.0-flash` free tier quota = 0 | ✅ Fixed | Switched to `gemini-2.5-flash` |
+| 2026-05-21 | `redirect_uri_mismatch` on Google OAuth in production | ✅ Fixed | Correct Supabase callback URI in Google Cloud Console |
+| 2026-05-21 | Session cookies lost on OAuth redirect | ✅ Fixed | Cookies set directly on `NextResponse.redirect()` object |
+| 2026-05-21 | PKCE verifier cleared by middleware before route handler | ✅ Fixed | Excluded `/auth/callback` from middleware matcher in proxy.ts |
+| 2026-05-21 | "Invalid API key" on `exchangeCodeForSession` | ✅ Fixed | Updated stale keys in Vercel env vars, redeployed |

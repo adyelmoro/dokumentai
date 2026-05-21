@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google';
 import './globals.css';
 import Providers from '@/components/Providers';
 import ServiceWorkerRegistration from '@/components/ui/ServiceWorkerRegistration';
+import IOSInstallBanner from '@/components/IOSInstallBanner';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col">
         <ServiceWorkerRegistration />
         <Providers>{children}</Providers>
+        <IOSInstallBanner />
       </body>
     </html>
   );
